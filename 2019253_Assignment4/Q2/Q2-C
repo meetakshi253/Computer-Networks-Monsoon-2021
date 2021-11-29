@@ -1,0 +1,13 @@
+Q2.
+
+A & B. 
+I changed the routing tables of node B and C such that the hop count to reach node C and B respectively is 16 (as asked in the question). I have also removed
+the link between node B and node C.
+
+C. Can you spot any problem?
+Yes, there is a problem. Running the algorithm now causes the cost to reach C in the routing tables of A and B serially increase till infinity. Now that node C
+has been disconnected and is not communicating with A and B, a routing loop has occured which is called the COUNT TO INFINITY PROBLEM. 
+If we take it from the top after C is down and do a dry run, Now that C is down, the rest of the nodes are not aware of that and serially send their routing tables
+to each other. When A sends its table to B, B sees that there is a way to reach C via A with a cost (2+1) = 3. So, B updates its routing table entry (cost) to reach C
+to 3. Now, when B sends its routing table to A, A sees that the cost to reach C through B has increased to 3, and it changes its own cost to reach C to 4 in its 
+routing table. This process continues on and on infinitely and the routing tables never converge.
